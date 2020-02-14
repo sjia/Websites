@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SJIA Web Portal</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- jQuery-->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
+
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+       $scope.sites = [
+            {site : "IMAX",branch : "BR_BUILD_I",target : "I 1.0"},
+            {site : "MIX", branch : "BR_SAMPLE",target : "M 1.X"},
+            {site : "UPONE", branch : "BR_BUILD_U",target : "U 3.X"}
+        ];
+    });
+    </script>
+    <script>
+    $(document).ready
+    (
+        function()
+        {
+            $("#btn-test").click(function(){
+                $.ajax({url:"ai_cron/recommend_test.txt",success:function(result){
+                    $("#tests").html(result);
+                }});
+            });
+            $("#btn-cleartest").click(function(){
+                $.ajax({url:"ai_cron/default_text.txt",success:function(result){
+                    $("#tests").html(result);
+                }});
+            });
+            $("#btn-host").click(function(){
+                $.ajax({url:"ai_cron/recommend_host.txt",success:function(result){
+                    $("#hosts").html(result);
+                }});
+            });
+            $("#btn-clearhost").click(function(){
+                $.ajax({url:"ai_cron/default_text.txt",success:function(result){
+                    $("#hosts").html(result);
+                }});
+            });
+            $("#btn-datamodel").click(function(){
+<!--                location.href="http://10.244.129.137:8030/datavis";-->
+                    window.open('http://10.244.129.137:8030/datavis', '_blank')
+
+            });
+            $("#btn-home").click(function(){
+                location.href="index.html";
+            });
+            $("#btn-submit").click(function(){
+                location.href="results_log.html";
+            });
+            $("#btn-chart").click(function(){
+                location.href="chart.html";
+            });
+<!--            $("#btn-rate").click(function(){-->
+<!--                TBD-->
+<!--            });-->
+        }
+    );
+    </script>
+</head>
+
+<body>
+<p/>
+    <div class="page-header">
+        <h1>Product <small> - Your Central Test</small>
+<!--        <img src="chart/logo.png" class="img-fluid img-thumbnail"  height="50" width="50">-->
+<!--        <img src="chart/lgo.png"  height="50" width="50">-->
+        </h1>
+    </div>
+    <div>
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="results_log.html">Result</a></li>
+            <li role="presentation"><a href="chart.html">Chart/Rate</a></li>
+
+        </ul>
+    </div>
+    <div class="contain page-body">
+        <div class="col-md-9" role="main">
+            <div class="body-main">
+                <div>
+                    <h4>Selection List</h4>
+                    <div class="row">
+                        <div ng-app="myApp" ng-controller="myCtrl">
+                            <div class="col-lg-4">
+                                <h5>Product Name:
+                                    <select ng-model="selectedSite" ng-options="x.target for x in sites">
+                                    </select>
+                                </h5>
+                            </div>
+                            <div class="col-lg-4">
+                                <h5>Branch Name:
+                                    <select ng-model="selectedSite" ng-options="x.branch for x in sites">
+                                    </select>
+                                </h5>
+                            </div>
+                            <div class="col-lg-4">
+                                <h5>Target Unit/Function/System:
+                                    <select ng-model="selectedSite" ng-options="x.site for x in sites">
+                                    </select>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h5>Recommend Tests</h5>
+                        <button type="button" class="btn btn-default btn-sm" id="btn-cleartest"> Clear Selections</button>
+                        <button type="button" class="btn btn-default btn-sm" id="btn-test"> AI Recommend</button>
+                        </p>
+                        <textarea class="form-control" rows="3" id="tests"></textarea>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5>Storage Devices</h5>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Device1</label>
+                            <label><input type="checkbox" value="">Device2</label>
+                            <label><input type="checkbox" value="">Device3</label>
+                            <label><input type="checkbox" value="">Device4</label>
+                            <label><input type="checkbox" value="">Device5</label>
+                            <label><input type="checkbox" value="">Device6</label>
+                            <p/>
+                            <label><input type="checkbox" value="">Others</label>
+                            <textarea class="form-control" placeholder="Comma seperated" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <h5>IO Host</h5>
+                        <button type="button" class="btn btn-default btn-sm" id="btn-clearhost"> Clear Selections</button>
+                        <button type="button" class="btn btn-default btn-sm" id="btn-host"> AI Recommend</button>
+                        <button type="button" class="btn btn-default btn-sm" id="btn-datamodel"> Data Visualize</button>
+                        </p>
+                        <textarea class="form-control" rows="3" id="hosts"></textarea>
+                    </div>
+                    <form>
+                        <div class="col-lg-5">
+                            <!--            <label for="exampleInputFile">Specified Case</label>-->
+                            <h5>Specified Case</h5>
+                            <p/>
+                            <p class="help-block">List your case into template to upload</p>
+                            <input type="file" id="exampleInputFile">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <footer class="navbar-fixed-bottom">
+            <div>
+                <p/>
+                <p>
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-home"> Home Page </button>
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-submit"> Submit</button>
+                    <button type="button" class="btn btn-primary btn-sm" id="btn-chart"> View Chart</button>
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
