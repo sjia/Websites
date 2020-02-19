@@ -3,6 +3,6 @@ import sjia.views
 
 urlpatterns = [
     path('index', sjia.views.index),
-    path('resultlog', sjia.views.resultlog),
+    path('results', sjia.views.results_log),
     path('chart', sjia.views.chart)
 ]

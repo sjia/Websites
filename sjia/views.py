@@ -11,8 +11,8 @@ from django.forms import ModelChoiceField
 def index(request):
     return render(request,'index.html')
 
-def resultlog(request):
-    return render(request, 'requestlog.html')
+def results_log(request):
+    return render(request, 'results_log.html')
 
 def chart(request):
     return  render(request, 'chart.html')
