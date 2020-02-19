@@ -1,8 +1,0 @@
-<p></p>
-<h4>Result Links</h4>
-<hr>
-<h5>Cluster IP: 10.32.xxx.xx</h5>
-<p></p>
-<h5><a>https://cn.bing.com/?scope=web&FORM=HDRSC1</a></h5>
-<p></p>
-<hr>
