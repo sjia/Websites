@@ -30,28 +30,28 @@
         function()
         {
             $("#btn-test").click(function(){
-                $.ajax({url:"ai_cron/recommend_test.txt",success:function(result){
+                $.ajax({url:"/static/recommend_test.txt",success:function(result){
                     $("#tests").html(result);
                 }});
             });
             $("#btn-cleartest").click(function(){
-                $.ajax({url:"ai_cron/default_text.txt",success:function(result){
+                $.ajax({url:"/static/default_text.txt",success:function(result){
                     $("#tests").html(result);
                 }});
             });
             $("#btn-host").click(function(){
-                $.ajax({url:"ai_cron/recommend_host.txt",success:function(result){
+                $.ajax({url:"/static/recommend_host.txt",success:function(result){
                     $("#hosts").html(result);
                 }});
             });
             $("#btn-clearhost").click(function(){
-                $.ajax({url:"ai_cron/default_text.txt",success:function(result){
+                $.ajax({url:"/static/default_text.txt",success:function(result){
                     $("#hosts").html(result);
                 }});
             });
             $("#btn-datamodel").click(function(){
-<!--                location.href="http://10.244.129.137:8030/datavis";-->
-                    window.open('http://10.244.129.137:8030/datavis', '_blank')
+<!--                location.href="http://sjia.netlify.com/";-->
+                    window.open('http://sjia.netlify.com/', '_blank')
 
             });
             $("#btn-home").click(function(){
@@ -75,8 +75,7 @@
 <p/>
     <div class="page-header">
         <h1>Product <small> - Your Central Test</small>
-<!--        <img src="chart/logo.png" class="img-fluid img-thumbnail"  height="50" width="50">-->
-<!--        <img src="chart/lgo.png"  height="50" width="50">-->
+<!--        <img src="/static/logo.png" class="img-fluid img-thumbnail"  height="50" width="50">-->
         </h1>
     </div>
     <div>
